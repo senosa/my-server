@@ -1,0 +1,5 @@
+---
+# Defines tasks applicable across all machines in the infrastructure.
+
+- include: apt.yaml
+  sudo: yes
