@@ -1,0 +1,4 @@
+---
+# Defines tasks applicable for ruby.
+
+- include: rbenv-setup.yaml
