@@ -1,0 +1,13 @@
+---
+# Defines tasks applicable across all machines in the infrastructure.
+
+- include: apt.yaml
+  sudo: yes
+
+- name: Change timezone UTC to JST
+  sudo: yes
+  when: ansible_date_time.tz == "UTC"
+  command: "{{ item }}"
+  with_items:
+   - mv /etc/localtime /etc/localtime.orig
+   - cp /usr/share/zoneinfo/Japan /etc/localtime

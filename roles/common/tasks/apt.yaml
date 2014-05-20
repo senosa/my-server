@@ -1,0 +1,12 @@
+---
+# Defines tasks applicable for APT
+
+- name: Replace /etc/apt/sources.list
+  copy: src=etc_apt_sources.list dest=/etc/apt/sources.list backup=yes
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: Upgrade all safe packages
+  apt: upgrade=safe
+

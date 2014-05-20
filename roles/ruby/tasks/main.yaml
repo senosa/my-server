@@ -1,0 +1,9 @@
+---
+# Defines tasks applicable for ruby.
+
+- include: rbenv-setup.yaml
+
+- include: ruby-install.yaml ruby_version=2.1.2 rbenv_makeopts=''
+
+- name: Set global ruby version
+  shell: cd; bash -lc "rbenv global 2.1.2"
