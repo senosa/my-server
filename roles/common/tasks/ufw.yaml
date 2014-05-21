@@ -1,0 +1,15 @@
+---
+# Defines tasks applicable for ufw
+
+- name: Add OpenSSH allow from host 192.168.33.1
+  ufw: rule=allow name=OpenSSH from_ip=192.168.33.1
+  when: ansible_bios_version == "VirtualBox"
+
+- name: Add OpenSSH limit from anywhere
+  ufw: rule=limit name=OpenSSH
+
+- name: Enable log for ufw
+  ufw: logging=low
+
+- name: Enable ufw
+  ufw: state=enabled
