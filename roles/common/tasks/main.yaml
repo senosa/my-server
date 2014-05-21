@@ -19,4 +19,3 @@
     - regexp='^PasswordAuthentication' line='PasswordAuthentication no' insertafter='#PasswordAuthentication'
     - regexp='^UsePAM' line='UsePAM no' insertafter='#UsePAM'
   notify: restart ssh
-  tags: testing
