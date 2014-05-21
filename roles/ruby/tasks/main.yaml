@@ -7,3 +7,4 @@
 
 - name: Set global ruby version
   shell: cd; bash -lc "rbenv global 2.1.2"
+  changed_when: False  # never report as "changed"
