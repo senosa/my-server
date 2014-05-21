@@ -19,3 +19,6 @@
     - regexp='^PasswordAuthentication' line='PasswordAuthentication no' insertafter='#PasswordAuthentication'
     - regexp='^UsePAM' line='UsePAM no' insertafter='#UsePAM'
   notify: restart ssh
+
+- include: ufw.yaml
+  sudo: yes
