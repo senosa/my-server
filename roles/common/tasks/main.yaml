@@ -11,3 +11,12 @@
   with_items:
    - mv /etc/localtime /etc/localtime.orig
    - cp /usr/share/zoneinfo/Japan /etc/localtime
+
+- name: Configure sshd_config
+  sudo: yes
+  lineinfile: dest=/etc/ssh/sshd_config backup=yes {{ item }}
+  with_items:
+    - regexp='^PasswordAuthentication' line='PasswordAuthentication no' insertafter='#PasswordAuthentication'
+    - regexp='^UsePAM' line='UsePAM no' insertafter='#UsePAM'
+  notify: restart ssh
+  tags: testing
