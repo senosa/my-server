@@ -9,7 +9,7 @@
   git: repo=git://github.com/senosa/dotfiles.git dest=~{{ main_user }}/src/dotfiles
 
 - name: Run rake symlink
-  shell: cd src/dotfiles; bash -lc "umask 022"; bash -lc "rake symlink"
+  shell: cd src/dotfiles; bash -lc "rake symlink"
 
 - name: Change default shell
   sudo: yes
