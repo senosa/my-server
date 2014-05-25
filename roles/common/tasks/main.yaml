@@ -22,3 +22,6 @@
 
 - include: ufw.yaml
   sudo: yes
+
+- name: Ensure github is in the known_hosts file
+  known_hosts: host=github.com state=present
