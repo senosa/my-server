@@ -1,0 +1,24 @@
+---
+# Defines tasks applicable for logwatch
+
+- name: Install logwatch
+  sudo: yes
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - logwatch
+  tags: logwatch
+
+- name: Configure logwatch
+  sudo: yes
+  copy: src=etc_logwatch_conf_logwatch.conf dest=/etc/logwatch/conf/logwatch.conf
+  tags: logwatch
+
+- name: Remove logwatch's dist cronjob
+  sudo: yes
+  file: state=absent path=/etc/cron.daily/00logwatch
+  tags: logwatch
+
+- name: Configure weekly logwatch cronjob
+  sudo: yes
+  cron: special_time=weekly job=/usr/sbin/logwatch name=logwatch
+  tags: logwatch
