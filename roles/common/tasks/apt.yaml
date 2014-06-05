@@ -17,7 +17,7 @@
     - iotop
     - git
     - tmux
-    - vim
+    - vim-nox
     - zsh
   tags:
     - apt
