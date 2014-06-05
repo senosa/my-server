@@ -1,0 +1,16 @@
+---
+# Defines tasks applicable for zsh.
+
+- name: Install zsh
+  sudo: yes
+  apt: pkg=zsh state=installed
+
+- name: Clone my dotfiles
+  git: repo=git://github.com/senosa/dotfiles.git dest=~{{ main_user }}/src/dotfiles
+
+- name: Run rake symlink
+  shell: cd src/dotfiles; bash -lc "rake symlink"
+
+- name: Change default shell
+  sudo: yes
+  user: name={{ main_user }} shell=/usr/bin/zsh

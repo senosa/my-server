@@ -5,7 +5,7 @@
   copy: src=etc_apt_sources.list dest=/etc/apt/sources.list backup=yes
 
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time=86400
+  apt: update_cache=yes
 
 - name: Upgrade all safe packages
   apt: upgrade=safe
