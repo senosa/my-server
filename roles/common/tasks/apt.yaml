@@ -3,10 +3,26 @@
 
 - name: Replace /etc/apt/sources.list
   copy: src=etc_apt_sources.list dest=/etc/apt/sources.list backup=yes
+  tags: apt
 
 - name: Update apt cache
   apt: update_cache=yes
+  tags: apt
+
+- name: Install basic packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - htop
+    - iftop
+    - iotop
+    - git
+    - tmux
+    - vim
+    - zsh
+  tags:
+    - apt
+    - apt:install
 
 - name: Upgrade all safe packages
   apt: upgrade=safe
-
+  tags: apt
