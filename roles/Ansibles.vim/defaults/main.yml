@@ -1,0 +1,4 @@
+# file: vim/defaults/main.yml
+
+vim_base: "vim-nox"
+vim_extras: []
