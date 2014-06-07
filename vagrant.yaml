@@ -4,3 +4,4 @@
   sudo: yes
   roles:
     - Ansibles.apt
+    - Ansibles.hostname
