@@ -7,6 +7,7 @@
     owner: root
     group: root
     mode: 0644
+    backup: yes
   when: apt_reset_source_list
 
 - name: APT | Update the apt cache
