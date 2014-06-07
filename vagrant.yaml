@@ -6,3 +6,4 @@
     - Ansibles.apt
     - Ansibles.hostname
     - Ansibles.timezone
+    - Ansibles.openssh
