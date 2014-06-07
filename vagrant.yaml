@@ -7,3 +7,4 @@
     - Ansibles.hostname
     - Ansibles.timezone
     - Ansibles.openssh
+    - Ansibles.vim
