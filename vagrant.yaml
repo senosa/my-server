@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  sudo: yes
+  roles:
+    - Ansibles.apt
