@@ -11,3 +11,4 @@
     - Ansibles.timezone
     - Ansibles.openssh
     - Ansibles.vim
+    - { role: postfix, tags: [ 'postfix' ] }

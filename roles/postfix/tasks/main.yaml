@@ -1,38 +1,31 @@
----
-# Defines tasks applicable for postfix
+# file: postfix/tasks/main.yaml
 
-- name: Install Postfix and related packages
-  sudo: yes
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - postfix
-    - mailutils
-  tags: postfix
+- name: Make sure Postfix are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items: ["postfix", "mailutils"]
 
-- name: Replace /etc/postfix/main.cf
-  sudo: yes
-  copy: src=etc_postfix_main.cf dest=/etc/postfix/main.cf backup=yes
+- name: Configure Postfix (/etc/postfix/main.cf)
+  copy:
+    src: etc_postfix_main.cf
+    dest: /etc/postfix/main.cf
+    backup: yes
   notify: restart postfix
-  tags: postfix
 
-- name: Copy /etc/postfix/sasl_passwd
-  sudo: yes
-  template: src=etc_postfix_sasl_passwd.j2 dest=/etc/postfix/sasl_passwd owner=root group=root mode=0600 backup=yes
-  notify: restart postfix
-  tags: postfix
+- name: Configure Postfix (/etc/postfix/sasl_passwd)
+  template:
+    src: etc_postfix_sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    owner: root
+    group: root
+    mode: 0600
+    backup: yes
+  notify: postmap sasl_passwd
 
-- name: Run postmap
-  sudo: yes
-  shell: postmap /etc/postfix/sasl_passwd
-  notify: restart postfix
-  tags: postfix
-
-- name: Replace /etc/aliases
-  sudo: yes
-  copy: src=etc_aliases dest=/etc/aliases backup=yes
-  tags: postfix
-
-- name: Run newaliases
-  sudo: yes
-  shell: newaliases
-  tags: postfix
+- name: Configure aliases (/etc/aliases)
+  copy:
+    src: etc_aliases
+    dest: /etc/aliases
+    backup: yes
+  notify: newaliases
