@@ -1,6 +1,10 @@
 apt_reset_source_list: yes
 timezone_zone: Japan
 
+# logwatch
+logwatch_email: "senosa@gmail.com"
+logwatch_output: "mail"
+
 # file: openssh/defaults/main.yml
 openssh_client_settings:
   Host: "*"

@@ -12,3 +12,4 @@
     - Ansibles.openssh
     - Ansibles.vim
     - { role: postfix, tags: [ 'postfix' ] }
+    - { role: Ansibles.logwatch, tags: [ 'logwatch' ] }
