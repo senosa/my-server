@@ -20,5 +20,6 @@
     - sshd
     - cron
     - ntp
+    - postfix
   notify:
     - restart monit

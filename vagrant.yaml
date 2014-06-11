@@ -14,3 +14,4 @@
     - { role: postfix, tags: [ 'postfix' ] }
     - { role: Ansibles.ntp, tags: [ 'ntp' ] }
     - { role: Ansibles.logwatch, tags: [ 'logwatch' ] }
+    - { role: Ansibles.monit, tags: [ 'monit' ] }

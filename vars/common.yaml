@@ -16,6 +16,9 @@ ntp_restricts:
   - "restrict -6 default kod notrap nomodify nopeer noquery"
   - "restrict -6 ::1 nomodify"
 
+# monit
+monit_notify_email: "senosa@gmail.com"
+
 # file: openssh/defaults/main.yml
 openssh_client_settings:
   Host: "*"
