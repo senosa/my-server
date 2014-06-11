@@ -4,6 +4,7 @@
   sudo: yes
   vars_files:
     - vars/common.yaml
+    - vars/private.yaml
   roles:
     - Ansibles.apt
     - Ansibles.hostname
