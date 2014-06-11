@@ -19,6 +19,9 @@ ntp_restricts:
 # monit
 monit_notify_email: "senosa@gmail.com"
 
+# fail2ban
+fail2ban_destemail: "senosa@gmail.com"
+
 # file: openssh/defaults/main.yml
 openssh_client_settings:
   Host: "*"
