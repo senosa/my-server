@@ -1,6 +1,5 @@
 mail_owner = postfix
 myhostname = mail.vagbox.dev
-mydomain = dev
 myorigin = $mydomain
 inet_interfaces = all
 mydestination = $myhostname, localhost.$mydomain, localhost
