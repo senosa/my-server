@@ -1,0 +1,12 @@
+- name: Make sure some basic utilities are installed
+  apt:
+    pkg: "{{item}}"
+  with_items:
+    - dstat
+    - htop
+    - ifstat
+    - iftop
+    - iotop
+    - language-pack-ja
+    - linux-headers-generic
+    - mosh
