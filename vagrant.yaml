@@ -16,3 +16,4 @@
     - { role: Ansibles.logwatch, tags: [ 'logwatch' ] }
     - { role: Ansibles.monit, tags: [ 'monit' ] }
     - { role: Ansibles.fail2ban, tags: [ 'fail2ban' ] }
+    - { role: Ansibles.build-essential, tags: [ 'build-essential' ] }
