@@ -1,3 +1,5 @@
+main_user: vagrant
+
 apt_reset_source_list: yes
 timezone_zone: Japan
 
@@ -21,6 +23,10 @@ monit_notify_email: "senosa@gmail.com"
 
 # fail2ban
 fail2ban_destemail: "senosa@gmail.com"
+
+# git
+git_install_from_source: yes
+git_version: "2.0.0"
 
 # file: openssh/defaults/main.yml
 openssh_client_settings:
