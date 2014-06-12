@@ -17,3 +17,4 @@
     - { role: Ansibles.monit, tags: [ 'monit' ] }
     - { role: Ansibles.fail2ban, tags: [ 'fail2ban' ] }
     - { role: Ansibles.git, tags: [ 'git' ] }
+    - { role: tig, tags: [ 'tig' ] }
