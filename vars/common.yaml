@@ -1,5 +1,3 @@
-main_user: vagrant
-
 apt_reset_source_list: yes
 timezone_zone: Japan
 
