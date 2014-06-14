@@ -1,0 +1,12 @@
+- name: Add rule for OpenSSH allow from anywhere
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Enable log for ufw
+  ufw:
+    logging: low
+
+- name: Enable ufw
+  ufw:
+    state: enabled

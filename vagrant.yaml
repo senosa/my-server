@@ -9,6 +9,7 @@
     - Ansibles.apt
     - Ansibles.hostname
     - Ansibles.timezone
+    - { role: ufw, tags: [ 'ufw' ] }
     - Ansibles.openssh
     - Ansibles.vim
     - { role: postfix, tags: [ 'postfix' ] }
