@@ -12,3 +12,4 @@
 
 - name: Update the hardware clock
   command: hwclock -w
+  changed_when: False  # never report as "changed"
