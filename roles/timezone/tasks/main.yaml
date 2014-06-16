@@ -1,0 +1,14 @@
+# file: timezone/tasks/main.yaml
+
+- name: Symlink the correct localtime (/etc/localtime)
+  file:
+    src: /usr/share/zoneinfo/{{timezone_zone}}
+    dest: /etc/localtime
+    state: link
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
+
+- name: Update the hardware clock
+  command: hwclock -w
