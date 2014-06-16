@@ -1,0 +1,8 @@
+# file: bash/tasks/main.yaml
+
+- name: Enable color prompt
+  lineinfile:
+    dest: /home/{{ main_user }}/.bashrc
+    regexp: '^#force_color_prompt=yes'
+    line: 'force_color_prompt=yes'
+    backup: yes

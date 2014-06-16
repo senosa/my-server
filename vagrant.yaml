@@ -6,6 +6,7 @@
     - vars/common.yaml
     - vars/private.yaml
   roles:
+    - { role: bash, tags: [ 'bash' ], sudo: no}
     # - Ansibles.apt
     # - Ansibles.hostname
     # - Ansibles.timezone
