@@ -8,3 +8,27 @@
 
 - name: Make sure ssh_host_ed25519_key is present
   command: ssh-keygen -q -f /etc/ssh/ssh_host_ed25519_key -N "" -t ed25519 creates=/etc/ssh/ssh_host_ed25519_key
+
+- name: PermimtRootLogin without-password
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin without-password'
+  notify:
+    - restart ssh
+
+- name: PasswordAuthentication no
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify:
+    - restart ssh
+
+- name: UsePAM no
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^UsePAM'
+    line: 'UsePAM no'
+  notify:
+    - restart ssh
