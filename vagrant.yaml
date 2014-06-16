@@ -8,6 +8,7 @@
   roles:
     - { role: apt, tags: [ 'apt' ] }
     - { role: timezone, tags: [ 'timezone' ] }
+    - { role: ntp, tags: [ 'ntp' ] }
     - { role: hostname, tags: [ 'hostname' ] }
     - { role: openssh, tags: [ 'openssh' ] }
     - { role: ufw, tags: [ 'ufw' ] }

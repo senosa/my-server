@@ -8,17 +8,6 @@ apt_reset_source_list: yes
 logwatch_email: "senosa@gmail.com"
 logwatch_output: "mail"
 
-# ntp
-ntp_timezone: "JST"
-ntp_servers: ["ntp.jst.mfeed.ad.jp", "ntp.nict.jp"]
-ntp_restricts:
-  - "restrict ntp.jst.mfeed.ad.jp nomodify notrap noquery"
-  - "restrict ntp.nict.jp nomodify notrap noquery"
-  - "restrict default kod notrap nomodify nopeer noquery"
-  - "restrict 127.0.0.1 nomodify"
-  - "restrict -6 default kod notrap nomodify nopeer noquery"
-  - "restrict -6 ::1 nomodify"
-
 # monit
 monit_notify_email: "senosa@gmail.com"
 
