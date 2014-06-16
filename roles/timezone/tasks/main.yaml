@@ -2,7 +2,7 @@
 
 - name: Symlink the correct localtime (/etc/localtime)
   file:
-    src: /usr/share/zoneinfo/{{timezone_zone}}
+    src: /usr/share/zoneinfo/Japan
     dest: /etc/localtime
     state: link
     owner: root

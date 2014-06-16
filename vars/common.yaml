@@ -1,6 +1,3 @@
-# timezone
-timezone_zone: Japan
-
 # apt
 apt_reset_source_list: yes
 
