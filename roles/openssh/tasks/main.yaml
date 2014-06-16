@@ -1,0 +1,10 @@
+# file: openssh/tasks/main.yaml
+
+- name: Make sure server and client packages are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items: ["openssh-client", "openssh-server"]
+
+- name: Make sure ssh_host_ed25519_key is present
+  command: ssh-keygen -q -f /etc/ssh/ssh_host_ed25519_key -N "" -t ed25519 creates=/etc/ssh/ssh_host_ed25519_key

@@ -8,6 +8,7 @@
   roles:
     - { role: timezone, tags: [ 'timezone' ] }
     - { role: hostname, tags: [ 'hostname' ] }
+    - { role: openssh, tags: [ 'openssh' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
     # - Ansibles.apt
     # - Ansibles.hostname
