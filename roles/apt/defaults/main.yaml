@@ -1,0 +1,6 @@
+# file: apt/defaults/main.yaml
+
+apt_reset_source_list: no
+apt_cache_valid_time: 3600
+apt_autoremove: yes
+apt_autoclean: yes

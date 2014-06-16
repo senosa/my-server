@@ -3,7 +3,6 @@ timezone_zone: Japan
 
 # apt
 apt_reset_source_list: yes
-apt_install_recommends: yes
 
 # logwatch
 logwatch_email: "senosa@gmail.com"
