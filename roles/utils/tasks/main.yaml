@@ -1,6 +1,9 @@
+# file: utils/tasks/main.yaml
+
 - name: Make sure some basic utilities are installed
   apt:
     pkg: "{{item}}"
+    state: present
   with_items:
     - dstat
     - htop
@@ -10,3 +13,14 @@
     - language-pack-ja
     - linux-headers-generic
     - mosh
+    - vim-nox
+
+- name: Make sure vim-tiny is uninstalled
+  apt:
+    pkg: vim-tiny
+    state: absent
+
+- name: Add rule for mosh allow from anywhere
+  ufw:
+    rule: allow
+    name: mosh
