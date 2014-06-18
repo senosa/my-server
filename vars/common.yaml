@@ -1,6 +1,3 @@
-# monit
-monit_notify_email: "senosa@gmail.com"
-
 # git
 git_install_from_source: yes
 git_version: "2.0.0"

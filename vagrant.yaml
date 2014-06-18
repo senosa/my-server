@@ -14,10 +14,10 @@
     - { role: postfix, tags: [ 'postfix' ] }
     - { role: logwatch, tags: [ 'logwatch' ] }
     - { role: fail2ban, tags: [ 'fail2ban' ] }
+    - { role: monit, tags: [ 'monit' ] }
     - { role: ufw, tags: [ 'ufw' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
     # - { role: utils, tags: [ 'utils' ] }
     # - Ansibles.vim
-    # - { role: Ansibles.monit, tags: [ 'monit' ] }
     # - { role: Ansibles.git, tags: [ 'git' ] }
     # - { role: tig, tags: [ 'tig' ] }
