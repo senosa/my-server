@@ -11,17 +11,11 @@
     - { role: ntp, tags: [ 'ntp' ] }
     - { role: hostname, tags: [ 'hostname' ] }
     - { role: openssh, tags: [ 'openssh' ] }
+    - { role: postfix, tags: [ 'postfix' ] }
     - { role: ufw, tags: [ 'ufw' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
-    # - Ansibles.apt
-    # - Ansibles.hostname
-    # - Ansibles.timezone
     # - { role: utils, tags: [ 'utils' ] }
-    # - { role: ufw, tags: [ 'ufw' ] }
-    # - Ansibles.openssh
     # - Ansibles.vim
-    # - { role: postfix, tags: [ 'postfix' ] }
-    # - { role: Ansibles.ntp, tags: [ 'ntp' ] }
     # - { role: Ansibles.logwatch, tags: [ 'logwatch' ] }
     # - { role: Ansibles.monit, tags: [ 'monit' ] }
     # - { role: Ansibles.fail2ban, tags: [ 'fail2ban' ] }
