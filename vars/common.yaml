@@ -1,7 +1,3 @@
-# logwatch
-logwatch_email: "senosa@gmail.com"
-logwatch_output: "mail"
-
 # monit
 monit_notify_email: "senosa@gmail.com"
 
