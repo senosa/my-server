@@ -1,0 +1,16 @@
+# file: build-essential/tasks/main.yaml
+
+- name: Make sure the packages are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - autoconf
+    - binutils-doc
+    - bison
+    - build-essential
+    - flex
+    - gettext
+    - ncurses-dev
+  register: result
+  changed_when: '"0 upgraded, 0 newly installed, 0 to remove" not in result.stdout'

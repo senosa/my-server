@@ -17,5 +17,5 @@
     - { role: monit, tags: [ 'monit' ] }
     - { role: ufw, tags: [ 'ufw' ] }
     - { role: utils, tags: [ 'utils' ] }
+    - { role: tig, tags: [ 'tig' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
-    # - { role: tig, tags: [ 'tig' ] }
