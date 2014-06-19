@@ -18,5 +18,4 @@
     - { role: ufw, tags: [ 'ufw' ] }
     - { role: utils, tags: [ 'utils' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
-    # - { role: Ansibles.git, tags: [ 'git' ] }
     # - { role: tig, tags: [ 'tig' ] }
