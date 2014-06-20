@@ -1,0 +1,4 @@
+# file: etckeeper/meta/main.yaml
+
+dependencies:
+  - utils

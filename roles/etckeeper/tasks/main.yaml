@@ -1,0 +1,14 @@
+# file: etckeeper/tasks/main.yaml
+
+- name: Make sure etckeeper is installed
+  apt:
+    pkg: etckeeper
+    state: present
+
+- name: Configure etckeeper (/etc/etckeeper/etckeeper.conf)
+  copy:
+    src: etc_etckeeper_etckeeper.conf
+    dest: /etc/etckeeper/etckeeper.conf
+    owner: root
+    group: root
+    mode: 0644
