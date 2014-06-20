@@ -1,9 +1,12 @@
 # file: etckeeper/tasks/main.yaml
 
-- name: Make sure etckeeper is installed
+- name: Make sure etckeeper and git are installed
   apt:
-    pkg: etckeeper
+    pkg: "{{item}}"
     state: present
+  with_items:
+    - git
+    - etckeeper
 
 - name: Configure etckeeper (/etc/etckeeper/etckeeper.conf)
   copy:
