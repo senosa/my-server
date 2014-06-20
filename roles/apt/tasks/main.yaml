@@ -30,3 +30,11 @@
   with_items:
     - python-apt
     - unattended-upgrades
+
+- name: Configure unattended-upgrades
+  copy:
+    src: etc_apt_apt.conf.d_20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644
