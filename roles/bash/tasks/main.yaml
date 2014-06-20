@@ -6,3 +6,8 @@
     insertafter: '^#force_color_prompt=yes'
     line: 'force_color_prompt=yes'
     backup: yes
+
+- name: Set LANG=ja_JP.UTF-8
+  lineinfile:
+    dest: /home/{{ main_user }}/.bashrc
+    line: 'export LANG=ja_JP.UTF-8'
