@@ -2,7 +2,7 @@
 
 - name: Symlink the correct localtime (/etc/localtime)
   file:
-    src: /usr/share/zoneinfo/Japan
+    src: /usr/share/zoneinfo/{{timezone_timezone}}
     dest: /etc/localtime
     state: link
     owner: root
@@ -10,6 +10,11 @@
     mode: 0644
     force: yes
 
-- name: Update the hardware clock
-  command: hwclock -w
-  changed_when: False  # never report as "changed"
+- name: Make sure tzdata is installed
+  apt: pkg=tzdata
+
+- name: Set timezone
+  template:
+    dest: /etc/timezone
+    src: etc_timezone.j2
+  notify: timezone update
