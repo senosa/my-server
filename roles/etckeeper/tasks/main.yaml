@@ -15,3 +15,7 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Initialize git repository
+  command: etckeeper init
+  changed_when: False  # never report as "changed"
