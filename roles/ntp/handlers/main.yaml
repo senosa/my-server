@@ -1,0 +1,6 @@
+# file: ntp/handlers/main.yaml
+
+- name: restart ntp
+  service:
+    name: ntp
+    state: restarted

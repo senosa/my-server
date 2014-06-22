@@ -1,12 +1,9 @@
+# file: ufw/tasks/main.yaml
+
 - name: Add rule for OpenSSH allow from anywhere
   ufw:
     rule: allow
     name: OpenSSH
-
-- name: Add rule for mosh allow from anywhere
-  ufw:
-    rule: allow
-    name: mosh
 
 - name: Enable log for ufw
   ufw:

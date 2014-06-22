@@ -1,0 +1,18 @@
+# file: monit/defaults/main.yaml
+
+monit_poll_period: 120
+monit_poll_start_delay: 120
+
+monit_mailserver_host: "localhost"
+
+monit_mailformat_from: "monit@{{inventory_hostname}}"
+monit_mailformat_subject: "$SERVICE $EVENT"
+monit_mailformat_message: "$ACTION $SERVICE at $DATE on $HOST: $DESCRIPTION."
+
+monit_notify_email: "root@localhost"
+
+monit_port: 3737
+monit_address: "localhost"
+monit_allow: ["localhost"]
+monit_ssl: no
+monit_cert: "/etc/monit/monit.pem"

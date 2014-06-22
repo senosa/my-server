@@ -1,1 +1,1 @@
-u1404.vagbox.dev     ansible_ssh_host=192.168.33.10    ansible_ssh_port=22     main_user=vagrant
+trusty.snest.net     ansible_ssh_host=192.168.33.10    ansible_ssh_port=22     main_user=vagrant

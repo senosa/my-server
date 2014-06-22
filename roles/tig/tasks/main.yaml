@@ -1,26 +1,10 @@
-# file: tig/tasks/main.yml
+# file: tig/tasks/main.yaml
 
-- name: Make sure the build dependencies are installed
-  apt:
-    pkg: "libncursesw5-dev"
-    state: present
+- name: Check tig version
+  command: tig --version
+  register: result
+  changed_when: false
+  failed_when: result.rc not in [0,2]
 
-- name: Make sure github is in the known_hosts file
-  known_hosts:
-    host: github.com
-    state: present
-
-- name: Clone the tig repository in /tmp
-  git:
-    repo: https://github.com/jonas/tig.git
-    version: tig-{{tig_version}}
-    dest: /tmp/tig
-
-- name: Checkout local branch from tag
-  command: git checkout -b build-{{tig_version}} chdir=/tmp/tig
-
-- name: Build tig from source - pt. 1 (Make)
-  shell: LDLIBS=-lncursesw CFLAGS=-I/usr/include/ncursesw make prefix={{tig_prefix}} chdir=/tmp/tig
-
-- name: Build tig from source - pt. 2 (Make install)
-  command: make install prefix={{git_prefix}} chdir=/tmp/tig
+- include: install.yaml
+  when: result.rc == 2 or result.stdout != "tig version {{tig_version}}"

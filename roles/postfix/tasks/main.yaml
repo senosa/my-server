@@ -7,10 +7,12 @@
   with_items: ["postfix", "mailutils"]
 
 - name: Configure Postfix (/etc/postfix/main.cf)
-  copy:
-    src: etc_postfix_main.cf
+  template:
+    src: etc_postfix_main.cf.j2
     dest: /etc/postfix/main.cf
-    backup: yes
+    owner: root
+    group: root
+    mode: 0644
   notify: restart postfix
 
 - name: Configure Postfix (/etc/postfix/sasl_passwd)
@@ -20,12 +22,10 @@
     owner: root
     group: root
     mode: 0600
-    backup: yes
   notify: postmap sasl_passwd
 
 - name: Configure aliases (/etc/aliases)
   copy:
     src: etc_aliases
     dest: /etc/aliases
-    backup: yes
   notify: newaliases

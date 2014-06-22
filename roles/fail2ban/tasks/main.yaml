@@ -1,0 +1,31 @@
+# file: fail2ban/tasks/main.yaml
+
+- name: Make sure fail2ban is installed
+  apt:
+    pkg: fail2ban
+    state: latest
+
+- name: Configure fail2ban (/etc/fail2ban/fail2ban.local)
+  template:
+    src: etc_fail2ban_fail2ban.local.j2
+    dest: /etc/fail2ban/fail2ban.local
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart fail2ban
+
+- name: Configure fail2ban jail (/etc/fail2ban/jail.local)
+  template:
+    src: etc_fail2ban_jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart fail2ban
+
+- name: Make sure fail2ban is enabled
+  service:
+    name: fail2ban
+    enabled: yes

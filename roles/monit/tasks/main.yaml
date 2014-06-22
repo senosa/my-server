@@ -1,0 +1,30 @@
+# file: monit/tasks/main.yaml
+
+- name: Make sure monit is installed
+  apt:
+    pkg: monit
+    state: present
+
+- name: Configure monit (/etc/monit/monitrc)
+  template:
+    src: "etc_monit_monitrc.j2"
+    dest: "/etc/monit/monitrc"
+  notify:
+    - restart monit
+
+- name: Copy monit service files (/etc/monit/conf.d/)
+  copy:
+    src: "etc_monit_conf.d_{{item}}"
+    dest: "/etc/monit/conf.d/{{item}}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - cron
+    - fail2ban
+    - ntpd
+    - postfix
+    - rsyslog
+    - sshd
+  notify:
+    - restart monit

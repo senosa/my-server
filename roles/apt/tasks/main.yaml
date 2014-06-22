@@ -1,0 +1,40 @@
+# file: apt/tasks/main.yaml
+
+- name: Reset the sources list (/etc/apt/sources.list)
+  copy:
+    src: etc_apt_sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: Update the apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{apt_cache_valid_time}}"
+
+- name: Remove packages that are no longer needed for dependencies
+  shell: apt-get -y autoremove
+  register: result
+  changed_when: '"0 to remove" not in result.stdout'
+
+- name: Remove .deb files for packages no longer on your system
+  shell: apt-get -y autoclean
+  changed_when: False  # never report as "changed"
+
+- name: Make sure the required packages are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - python-apt
+    - unattended-upgrades
+
+- name: Configure unattended-upgrades
+  copy:
+    src: etc_apt_apt.conf.d_20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644

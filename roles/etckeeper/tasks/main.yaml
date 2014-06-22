@@ -1,0 +1,21 @@
+# file: etckeeper/tasks/main.yaml
+
+- name: Make sure etckeeper and git are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - git
+    - etckeeper
+
+- name: Configure etckeeper (/etc/etckeeper/etckeeper.conf)
+  copy:
+    src: etc_etckeeper_etckeeper.conf
+    dest: /etc/etckeeper/etckeeper.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Initialize git repository
+  command: etckeeper init
+  changed_when: False  # never report as "changed"

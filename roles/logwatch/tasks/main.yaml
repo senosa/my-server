@@ -1,0 +1,16 @@
+# file: logwatch/tasks/main.yaml
+
+- name: Make sure logwatch and its dependencies are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - logwatch
+
+- name: Configure logwatch (/etc/logwatch/conf/logwatch.conf)
+  template:
+    src: etc_logwatch_conf_logwatch.conf.j2
+    dest: /etc/logwatch/conf/logwatch.conf
+    owner: root
+    group: root
+    mode: 0644

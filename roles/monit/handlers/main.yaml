@@ -1,0 +1,6 @@
+# file: monit/handlers/main.yaml
+
+- name: restart monit
+  service:
+    name: monit
+    state: restarted

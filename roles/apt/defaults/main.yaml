@@ -1,0 +1,3 @@
+# file: apt/defaults/main.yaml
+
+apt_cache_valid_time: 3600

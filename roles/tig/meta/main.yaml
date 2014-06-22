@@ -1,0 +1,4 @@
+# file: tig/meta/main.yaml
+
+dependencies:
+  - build-essential

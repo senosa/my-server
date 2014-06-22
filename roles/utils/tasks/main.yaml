@@ -1,8 +1,16 @@
+# file: utils/tasks/main.yaml
+
+- name: Add PPA
+  apt_repository:
+    repo: ppa:git-core/ppa
+
 - name: Make sure some basic utilities are installed
   apt:
     pkg: "{{item}}"
+    state: present
   with_items:
     - dstat
+    - git
     - htop
     - ifstat
     - iftop
@@ -10,3 +18,21 @@
     - language-pack-ja
     - linux-headers-generic
     - mosh
+    - vim-nox
+
+- name: Make sure vim-tiny is uninstalled
+  apt:
+    pkg: vim-tiny
+    state: absent
+
+- name: Add rule for mosh allow from anywhere
+  ufw:
+    rule: allow
+    name: mosh
+
+- name: Copy .gitconfig
+  sudo: no
+  template:
+    src: gitconfig.j2
+    dest: /home/{{main_user}}/.gitconfig
+    mode: 0644
