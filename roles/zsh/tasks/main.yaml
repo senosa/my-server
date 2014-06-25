@@ -1,16 +1,44 @@
----
-# Defines tasks applicable for zsh.
+# file: zsh/tasks/main.yaml
 
-- name: Install zsh
+- name: Make sure zsh is installed
   sudo: yes
-  apt: pkg=zsh state=installed
+  apt:
+    pkg: zsh
+    state: present
 
-- name: Clone my dotfiles
-  git: repo=git://github.com/senosa/dotfiles.git dest=~{{ main_user }}/src/dotfiles
-
-- name: Run rake symlink
-  shell: cd src/dotfiles; bash -lc "rake symlink"
-
-- name: Change default shell
+- name: Make sure homesick gem is installed
   sudo: yes
-  user: name={{ main_user }} shell=/usr/bin/zsh
+  gem:
+    name: homesick
+    state: present
+    user_install: no
+
+- name: Clone oh-my-zsh
+  git:
+    repo: git@github.com:robbyrussell/oh-my-zsh.git
+    dest: /home/{{main_user}}/.oh-my-zsh
+    update: no
+    depth: 1
+
+- name: Clone dircolors-solarized
+  git:
+    repo: git@github.com:seebi/dircolors-solarized.git
+    dest: /home/{{main_user}}/src/dircolors-solarized
+    update: no
+    depth: 1
+
+- name: Symlink dircolors-solarized
+  file:
+    src: /home/{{main_user}}/src/dircolors-solarized/dircolors.256dark
+    dest: /home/{{main_user}}/.dircolors
+    state: link
+
+# homesick clone is clone by https, so manually clone
+- name: Clone dotfiles
+  git:
+    repo: git@github.com:senosa/dotfiles.git
+    dest: /home/{{main_user}}/.homesick/repos/dotfiles
+
+- name: Symlink my dotfiles by homesick
+  shell: cd; bash -lc "homesick link --force"
+  changed_when: false
