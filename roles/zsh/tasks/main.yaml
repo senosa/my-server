@@ -42,3 +42,7 @@
 - name: Symlink my dotfiles by homesick
   shell: cd; bash -lc "homesick link --force"
   changed_when: false
+
+- name: Change default shell
+  sudo: yes
+  user: name={{ main_user }} shell=/usr/bin/zsh
