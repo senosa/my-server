@@ -43,4 +43,6 @@
 
 - name: Change default shell
   sudo: yes
-  user: name={{ main_user }} shell=/usr/bin/zsh
+  user:
+    name: "{{main_user}}"
+    shell: /usr/bin/zsh
