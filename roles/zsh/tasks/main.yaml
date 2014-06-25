@@ -33,11 +33,9 @@
     dest: /home/{{main_user}}/.dircolors
     state: link
 
-# homesick clone is clone by https, so manually clone
-- name: Clone dotfiles
-  git:
-    repo: git@github.com:senosa/dotfiles.git
-    dest: /home/{{main_user}}/.homesick/repos/dotfiles
+- name: Clone my dotfiles by homesick
+  shell: cd; bash -lc "homesick clone git@github.com:senosa/dotfiles"
+  changed_when: false
 
 - name: Symlink my dotfiles by homesick
   shell: cd; bash -lc "homesick link --force"
