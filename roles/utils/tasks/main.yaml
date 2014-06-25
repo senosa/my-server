@@ -18,6 +18,7 @@
     - language-pack-ja
     - linux-headers-generic
     - mosh
+    - source-highlight
     - vim-nox
 
 - name: Make sure vim-tiny is uninstalled
