@@ -1,0 +1,5 @@
+# file: nginx/defaults/main.yaml
+
+nginx_dir: /etc/nginx
+nginx_user: www-data
+nginx_default_root: /srv/www/default

@@ -18,6 +18,7 @@
     - { role: ufw, tags: [ 'ufw' ] }
     - { role: utils, tags: [ 'utils' ] }
     - { role: tig, tags: [ 'tig' ] }
+    - { role: nginx, tags: [ 'nginx' ] }
     - { role: etckeeper, tags: [ 'etckeeper' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
     - { role: zsh, tags: [ 'zsh' ], sudo: no}

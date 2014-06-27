@@ -1,0 +1,6 @@
+# file: nginx/handlers/main.yaml
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
