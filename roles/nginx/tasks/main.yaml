@@ -31,47 +31,9 @@
   notify:
     - restart nginx
 
-- name: Make sure the default site root directory is present
-  file:
-    path: "{{nginx_default_root}}"
-    state: directory
-    owner: "{{nginx_user}}"
-    group: "{{nginx_user}}"
-    mode: 0755
-
-- name: Update the default site index.html
-  template:
-    src: index.html.j2
-    dest: "{{nginx_default_root}}/index.html"
-    owner: "{{nginx_user}}"
-    group: "{{nginx_user}}"
-    mode: 0644
-
-- name: Update the default site favicon.ico
-  copy:
-    src: favicon.ico
-    dest: "{{nginx_default_root}}/favicon.ico"
-    owner: "{{nginx_user}}"
-    group: "{{nginx_user}}"
-    mode: 0644
-
-- name: Update the default site configuration
-  template:
-    src: default.site.j2
-    dest: "{{nginx_dir}}/sites-available/default"
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Enable the default site
-  file:
-    path: "/etc/nginx/sites-enabled/default"
-    src: "/etc/nginx/sites-available/default"
-    state: link
-  notify:
-    - restart nginx
-
 - name: Add UFW rule allow from anywhere
   ufw:
     rule: allow
     name: 'Nginx HTTP'
+
+- include: default.yaml
