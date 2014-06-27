@@ -37,3 +37,4 @@
     name: 'Nginx HTTP'
 
 - include: default.yaml
+- include: snest.net.yaml
