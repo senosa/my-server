@@ -20,3 +20,4 @@
     - { role: tig, tags: [ 'tig' ] }
     - { role: etckeeper, tags: [ 'etckeeper' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
+    - { role: zsh, tags: [ 'zsh' ], sudo: no}

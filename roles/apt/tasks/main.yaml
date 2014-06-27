@@ -1,5 +1,11 @@
 # file: apt/tasks/main.yaml
 
+- name: Preferring IPv4 over IPv6 for apt-get
+  lineinfile:
+    dest: /etc/gai.conf
+    insertafter: '^#precedence ::ffff:0:0/96  100'
+    line: 'precedence ::ffff:0:0/96  100'
+
 - name: Reset the sources list (/etc/apt/sources.list)
   copy:
     src: etc_apt_sources.list

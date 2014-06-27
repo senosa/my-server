@@ -18,6 +18,8 @@
     - language-pack-ja
     - linux-headers-generic
     - mosh
+    - source-highlight
+    - tmux
     - vim-nox
 
 - name: Make sure vim-tiny is uninstalled
@@ -29,10 +31,3 @@
   ufw:
     rule: allow
     name: mosh
-
-- name: Copy .gitconfig
-  sudo: no
-  template:
-    src: gitconfig.j2
-    dest: /home/{{main_user}}/.gitconfig
-    mode: 0644
