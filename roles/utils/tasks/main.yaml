@@ -19,6 +19,7 @@
     - linux-headers-generic
     - mosh
     - source-highlight
+    - tmux
     - vim-nox
 
 - name: Make sure vim-tiny is uninstalled
