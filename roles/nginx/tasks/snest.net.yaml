@@ -1,0 +1,26 @@
+# file: nginx/tasks/snest.net.yaml
+
+- name: Clone snest.net repository
+  git:
+    repo: git://github.com/senosa/snest.net.git
+    dest: /srv/www/snest.net
+
+- name: Change owner:group to nginx_user
+  command: chown -R {{nginx_user}}:{{nginx_user}} /srv/www/snest.net
+  changed_when: false
+
+- name: Update the snest.net site configuration
+  template:
+    src: snest.net.site.j2
+    dest: "{{nginx_dir}}/sites-available/snest.net"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable the snest.net site
+  file:
+    path: "/etc/nginx/sites-enabled/snest.net"
+    src: "/etc/nginx/sites-available/snest.net"
+    state: link
+  notify:
+    - restart nginx

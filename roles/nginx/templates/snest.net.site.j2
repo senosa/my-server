@@ -1,0 +1,12 @@
+server {
+  listen   80;
+  server_name  www.snest.net www.snest.loc;
+
+  access_log /var/log/nginx/snest.net.access.log;
+  error_log /var/log/nginx/snest.net.error.log;
+
+  location / {
+    root   /srv/www/snest.net;
+    index  index.html index.htm;
+  }
+}
