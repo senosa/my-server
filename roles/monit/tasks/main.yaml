@@ -22,6 +22,7 @@
   with_items:
     - cron
     - fail2ban
+    - nginx
     - ntpd
     - postfix
     - rsyslog
