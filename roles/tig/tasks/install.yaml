@@ -12,7 +12,7 @@
 
 - name: Clone the tig repository in /tmp
   git:
-    repo: https://github.com/jonas/tig.git
+    repo: git://github.com/jonas/tig.git
     version: tig-{{tig_version}}
     dest: /tmp/tig
 

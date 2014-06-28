@@ -15,14 +15,14 @@
 
 - name: Clone oh-my-zsh
   git:
-    repo: git@github.com:robbyrussell/oh-my-zsh.git
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
     dest: /home/{{main_user}}/.oh-my-zsh
     update: no
     depth: 1
 
 - name: Clone dircolors-solarized
   git:
-    repo: git@github.com:seebi/dircolors-solarized.git
+    repo: git://github.com/seebi/dircolors-solarized.git
     dest: /home/{{main_user}}/src/dircolors-solarized
     update: no
     depth: 1
