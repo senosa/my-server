@@ -27,6 +27,9 @@
     pkg: vim-tiny
     state: absent
 
+- name: Update alternatives editor to vim-nox
+  command: update-alternatives --set editor /usr/bin/vim.nox
+
 - name: Add rule for mosh allow from anywhere
   ufw:
     rule: allow
