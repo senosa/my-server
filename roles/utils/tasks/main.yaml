@@ -21,6 +21,7 @@
     - source-highlight
     - tmux
     - vim-nox
+    - w3m
 
 - name: Make sure vim-tiny is uninstalled
   apt:
