@@ -7,7 +7,6 @@
     state: present
 
 - name: Make sure homesick gem is installed
-  sudo: yes
   gem:
     name: homesick
     state: present

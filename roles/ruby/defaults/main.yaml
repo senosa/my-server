@@ -1,0 +1,20 @@
+# file: ruby/defaults/main.yaml
+
+ruby_dependencies:
+  - git-core
+  - zlib1g-dev
+  - build-essential
+  - libssl-dev
+  - libreadline-dev
+  - libyaml-dev
+  - libsqlite3-dev
+  - sqlite3
+  - libxml2-dev
+  - libxslt1-dev
+  - libcurl4-openssl-dev
+  - python-software-properties
+
+rbenv_plugins:
+  - ruby-build
+  - rbenv-default-gems
+  - rbenv-gem-rehash
