@@ -1,0 +1,17 @@
+# file: nginx/tasks/snest.dev.yaml
+
+- name: Update the snest.dev site configuration
+  template:
+    src: snest.dev.site.j2
+    dest: "{{nginx_dir}}/sites-available/snest.dev"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable the snest.dev site
+  file:
+    path: "/etc/nginx/sites-enabled/snest.dev"
+    src: "/etc/nginx/sites-available/snest.dev"
+    state: link
+  notify:
+    - restart nginx

@@ -1,0 +1,13 @@
+server {
+  listen   80;
+  server_name  www.snest.dev;
+  sendfile off;
+
+  access_log /var/log/nginx/snest.dev.access.log;
+  error_log /var/log/nginx/snest.dev.error.log;
+
+  location / {
+    root   /srv/www/snest.dev;
+    index  index.html index.htm;
+  }
+}

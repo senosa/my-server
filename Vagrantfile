@@ -6,5 +6,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :trusty do |node|
     node.vm.network "private_network", ip: "192.168.33.10"
+    node.vm.synced_folder "snest.net/", "/srv/www/snest.dev", owner: "www-data", group: "www-data"
   end
 end
