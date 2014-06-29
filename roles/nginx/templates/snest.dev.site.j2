@@ -1,3 +1,7 @@
+upstream www.snest.dev {
+  server localhost:8092;
+}
+
 server {
   listen   80;
   server_name  www.snest.dev;
@@ -9,5 +13,14 @@ server {
   location / {
     root   /srv/www/snest.dev;
     index  index.html index.htm;
+  }
+
+  location ~ ^/diary/ {
+    try_files $uri @unicorn;
+  }
+
+  location @unicorn {
+    rewrite /diary/([0-9\-]+)\.html$ /diary/index.rb?date=$1 last;
+    proxy_pass http://www.snest.dev;
   }
 }

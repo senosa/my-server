@@ -1,0 +1,46 @@
+# file: tdiary/tasks/main.yaml
+
+- name: Clone senosa/tdiary-core
+  git:
+   repo: git://github.com/senosa/tdiary-core.git
+   dest: /opt/tdiary/tdiary-core
+
+- name: Check snest branch is present
+  shell: cd /opt/tdiary/tdiary-core; git branch | grep snest | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '
+  register: snest_branch
+  changed_when: False
+
+- name: Checkout snest branch from origin/snest
+  when: snest_branch.stdout != "snest"
+  shell: cd /opt/tdiary/tdiary-core; git checkout -b snest origin/snest
+
+- name: Chown main_user
+  command: chown -R {{main_user}}:{{main_user}} /opt/tdiary/tdiary-core
+  changed_when: False
+
+- name: Bundle install
+  sudo: no
+  shell: cd /opt/tdiary/tdiary-core; /usr/local/rbenv/shims/bundle install --path vendor/bundle --without test development
+  register: result
+  changed_when: result.stdout | search("Installing")
+
+- name: Chown www-data
+  command: chown -R www-data:www-data /opt/tdiary/tdiary-core
+  changed_when: False
+
+- name: Make sure unicorn is installed
+  sudo: no
+  command: /usr/local/rbenv/shims/gem install unicorn
+
+- name: Make sure log directory is present
+  file:
+    path: /var/log/tdiary
+    state: directory
+    owner: www-data
+    group: adm
+    mode: 0750
+
+- name: Copy upstart script
+  copy:
+    src: etc_init_tdiary.conf
+    dest: /etc/init/tdiary.conf
