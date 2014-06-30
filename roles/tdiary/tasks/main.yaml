@@ -8,6 +8,11 @@
   notify:
     - restart tdiary
 
+- name: Copy tdiary.conf
+  template:
+    src: tdiary.conf.j2
+    dest: /opt/tdiary/core/tdiary.conf
+
 - name: Clone senosa/tdiary-contrib
   git:
    repo: git://github.com/senosa/tdiary-contrib.git
