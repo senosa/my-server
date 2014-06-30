@@ -58,3 +58,5 @@
   copy:
     src: etc_init_tdiary.conf
     dest: /etc/init/tdiary.conf
+  notify:
+    - restart tdiary
