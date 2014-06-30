@@ -3,29 +3,43 @@
 - name: Clone senosa/tdiary-core
   git:
    repo: git://github.com/senosa/tdiary-core.git
-   dest: /opt/tdiary/tdiary-core
+   dest: /opt/tdiary/core
+   depth: 1
+  notify:
+    - restart tdiary
 
-- name: Check snest branch is present
-  shell: cd /opt/tdiary/tdiary-core; git branch | grep snest | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '
-  register: snest_branch
-  changed_when: False
+- name: Clone senosa/tdiary-contrib
+  git:
+   repo: git://github.com/senosa/tdiary-contrib.git
+   dest: /opt/tdiary/contrib
+   depth: 1
+  notify:
+    - restart tdiary
 
-- name: Checkout snest branch from origin/snest
-  when: snest_branch.stdout != "snest"
-  shell: cd /opt/tdiary/tdiary-core; git checkout -b snest origin/snest
+- name: Make sure data directory is present
+  file:
+    path: /opt/tdiary/data
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
 
-- name: Chown main_user
-  command: chown -R {{main_user}}:{{main_user}} /opt/tdiary/tdiary-core
+- name: Chown main_user (/opt/tdiary/core)
+  command: chown -R {{main_user}}:{{main_user}} /opt/tdiary/core
   changed_when: False
 
 - name: Bundle install
   sudo: no
-  shell: cd /opt/tdiary/tdiary-core; /usr/local/rbenv/shims/bundle install --path vendor/bundle --without test development
+  shell: cd /opt/tdiary/core; /usr/local/rbenv/shims/bundle install --path vendor/bundle --without test development
   register: result
   changed_when: result.stdout | search("Installing")
 
-- name: Chown www-data
-  command: chown -R www-data:www-data /opt/tdiary/tdiary-core
+- name: Chown www-data (/opt/tdiary/core)
+  command: chown -R www-data:www-data /opt/tdiary/core
+  changed_when: False
+
+- name: Chown www-data (/opt/tdiary/contrib)
+  command: chown -R www-data:www-data /opt/tdiary/contrib
   changed_when: False
 
 - name: Make sure unicorn is installed
