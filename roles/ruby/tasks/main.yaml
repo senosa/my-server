@@ -1,10 +1,66 @@
----
-# Defines tasks applicable for ruby.
+# file: ruby/tasks/main.yaml
 
-- include: rbenv-setup.yaml
+- name: Install ruby building dependencies
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items: ruby_dependencies
 
-- include: ruby-install.yaml ruby_version=2.1.2 rbenv_makeopts=''
+- name: User vagrant add adm group
+  when: ansible_bios_version == "VirtualBox"
+  user:
+    name: vagrant
+    groups: vagrant,adm
+    append: yes
+
+- name: Clone rbenv
+  git:
+   repo: git://github.com/sstephenson/rbenv.git
+   dest: /usr/local/rbenv
+   update: no
+  register: rbenv_install
+
+- name: Clone rbenv plugins
+  git:
+   repo: git://github.com/sstephenson/{{item}}.git
+   dest: /usr/local/rbenv/plugins/{{item}}
+   update: no
+  with_items: rbenv_plugins
+
+- name: Copy defalut-gems file
+  copy:
+    src: default-gems
+    dest: /usr/local/rbenv/default-gems
+
+- name: Make sure the directories is present
+  file:
+    path: /usr/local/rbenv/{{item}}
+    state: directory
+  with_items:
+    - shims
+    - versions
+
+- name: rbenv | Change group:adm
+  when: rbenv_install.changed
+  command: chgrp -R adm /usr/local/rbenv
+
+- name: rbenv | Change permissions
+  when: rbenv_install.changed
+  command: chmod -R g+rwxXs /usr/local/rbenv
+
+- name: Check if target ruby is installed
+  shell: cd; bash -lc "RBENV_ROOT=/usr/local/rbenv /usr/local/rbenv/bin/rbenv versions | grep 2.1.2 | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
+  register: ruby_is_installed
+  changed_when: False
+
+- name: Install ruby
+  when: ruby_is_installed.stdout != "2.1.2"
+  sudo: no
+  async: 600
+  poll: 30
+  shell: cd; bash -lc "RBENV_ROOT=/usr/local/rbenv CONFIGURE_OPTS=--disable-install-rdoc /usr/local/rbenv/bin/rbenv install 2.1.2"
 
 - name: Set global ruby version
-  shell: cd; bash -lc "rbenv global 2.1.2"
-  changed_when: False  # never report as "changed"
+  sudo: no
+  shell: cd; bash -lc "RBENV_ROOT=/usr/local/rbenv /usr/local/rbenv/bin/rbenv global 2.1.2"
+  changed_when: False

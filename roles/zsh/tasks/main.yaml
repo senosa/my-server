@@ -13,6 +13,11 @@
     state: present
     user_install: no
 
+- name: Make sure github is in the known_hosts file
+  known_hosts:
+    host: github.com
+    state: present
+
 - name: Clone oh-my-zsh
   git:
     repo: git://github.com/robbyrussell/oh-my-zsh.git

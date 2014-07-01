@@ -1,0 +1,6 @@
+# file: tdiary/handlers/main.yaml
+
+- name: restart tdiary
+  service:
+    name: tdiary
+    state: restarted

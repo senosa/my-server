@@ -38,3 +38,7 @@
 
 - include: default.yaml
 - include: snest.net.yaml
+
+# for development
+- include: snest.dev.yaml
+  when: ansible_bios_version == "VirtualBox"

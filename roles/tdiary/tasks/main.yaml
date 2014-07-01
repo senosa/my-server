@@ -1,0 +1,67 @@
+# file: tdiary/tasks/main.yaml
+
+- name: Clone senosa/tdiary-core
+  git:
+   repo: git://github.com/senosa/tdiary-core.git
+   dest: /opt/tdiary/core
+   depth: 1
+  notify:
+    - restart tdiary
+
+- name: Copy tdiary.conf
+  template:
+    src: tdiary.conf.j2
+    dest: /opt/tdiary/core/tdiary.conf
+
+- name: Clone senosa/tdiary-contrib
+  git:
+   repo: git://github.com/senosa/tdiary-contrib.git
+   dest: /opt/tdiary/contrib
+   depth: 1
+  notify:
+    - restart tdiary
+
+- name: Make sure data directory is present
+  file:
+    path: /opt/tdiary/data
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+- name: Chown main_user (/opt/tdiary/core)
+  command: chown -R {{main_user}}:{{main_user}} /opt/tdiary/core
+  changed_when: False
+
+- name: Bundle install
+  sudo: no
+  shell: cd /opt/tdiary/core; /usr/local/rbenv/shims/bundle install --path vendor/bundle --without test development
+  register: result
+  changed_when: result.stdout | search("Installing")
+
+- name: Chown www-data (/opt/tdiary/core)
+  command: chown -R www-data:www-data /opt/tdiary/core
+  changed_when: False
+
+- name: Chown www-data (/opt/tdiary/contrib)
+  command: chown -R www-data:www-data /opt/tdiary/contrib
+  changed_when: False
+
+- name: Make sure unicorn is installed
+  sudo: no
+  command: /usr/local/rbenv/shims/gem install unicorn
+
+- name: Make sure log directory is present
+  file:
+    path: /var/log/tdiary
+    state: directory
+    owner: www-data
+    group: adm
+    mode: 0750
+
+- name: Copy upstart script
+  copy:
+    src: etc_init_tdiary.conf
+    dest: /etc/init/tdiary.conf
+  notify:
+    - restart tdiary

@@ -19,6 +19,8 @@
     - { role: utils, tags: [ 'utils' ] }
     - { role: tig, tags: [ 'tig' ] }
     - { role: nginx, tags: [ 'nginx' ] }
+    - { role: ruby, tags: [ 'ruby' ] }
+    - { role: tdiary, tags: [ 'tdiary' ] }
     - { role: etckeeper, tags: [ 'etckeeper' ] }
     - { role: bash, tags: [ 'bash' ], sudo: no}
     - { role: zsh, tags: [ 'zsh' ], sudo: no}
