@@ -6,6 +6,7 @@ logwatch_range: "yesterday"
 logwatch_output: "mail"
 logwatch_format: "text"
 logwatch_disables:
+  - fail2ban
   - postfix
   - sshd
   - zz-disk_space
