@@ -35,3 +35,8 @@
   ufw:
     rule: allow
     name: mosh
+
+- name: Copy gitconfig for root (etckeeper)
+  template:
+    src: gitconfig.j2
+    dest: /root/.gitconfig
