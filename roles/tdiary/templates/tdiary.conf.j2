@@ -1,5 +1,4 @@
 @data_path = '../data'
-@smtp_host = 'localhost'
 @author_name = 'senosa'
 @mail_header = 'senosa'
 @html_title = '皮肉な日々と心意気'
@@ -171,7 +170,7 @@ bq.rb
 category.rb
 category_to_tag.rb
 category_to_tagcloud.rb
-comment_mail-smtp.rb
+comment_mail-sendmail.rb
 customize.rb
 day2section.rb
 disp_referrer.rb
@@ -194,14 +193,16 @@ title_tag.rb
 @options['amazon.imagesize'] = 1
 @options['amazon.aid'] = 'dancework-22'
 @options['dropdown_calendar.label'] = ''
+@options['category.edit_support'] = 1
 @options['comment_mail.enable'] = true
-@options['comment_mail.receivers'] = 'tdiarycomment@snest.net'
+@options['comment_mail.receivers'] = 'senosa@gmail.com'
 @options['disp_referrer2.unknown.hide'] = true
 @options['edit_today.caption'] = 'edit'
+@options['flickr.user_id'] = '64336793@N00'
 @options['flickr.apikey'] = '{{tdiary_flickr_apikey}}'
 @options['google_analytics.profile'] = "64984-1"
 @options['makerss.no_comments'] = true
-@options['makerss.file'] = 'public/index.rdf'
-@options['makerss.no_comments.file'] = 'public/no_comments.rdf'
+@options['makerss.file'] = 'index.rdf'
+@options['makerss.no_comments.file'] = 'no_comments.rdf'
 @options['my_hotentry.sort'] = 'count'
 load_cgi_conf
