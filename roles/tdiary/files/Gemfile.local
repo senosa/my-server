@@ -3,9 +3,10 @@ gem 'tdiary'
 # gem 'tdiary', :git => 'git@github.com:tdiary/tdiary-core.git'
 
 # if you use tdiary-contrib gem, uncomment this line.
-gem 'tdiary-contrib'
+# gem 'tdiary-contrib'
 # use edge tDiary contrib
 # gem 'tdiary-contrib', :git => 'git@github.com:tdiary/tdiary-contrib.git'
+gem 'tdiary-contrib', :path => '../contrib'
 
 gem 'tdiary-style-gfm'
 

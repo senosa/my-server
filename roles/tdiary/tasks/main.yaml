@@ -17,6 +17,11 @@
     chdir: /opt/tdiary
     creates: /opt/tdiary/diary/
 
+- name: Clone tdiary-contrib
+  git:
+    repo: git://github.com/senosa/tdiary-contrib.git
+    dest: /opt/tdiary/contrib
+
 - name: Copy tdiary.conf
   template:
     src: tdiary.conf.j2
